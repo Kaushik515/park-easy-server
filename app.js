@@ -27,7 +27,6 @@ const port = process.env.PORT || 5000;
 app.use(cors())
 
 
-// const url = "mongodb+srv://nandupvt02:"+pass_word+"@parkeasy.rhkw5gi.mongodb.net/?retryWrites=true&w=majority"
 
 mongoose.connect(process.env.url, {
     useNewUrlParser: true,
