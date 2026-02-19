@@ -129,9 +129,11 @@ npm install
 
 
 Run server:
-
 npm start
-🔑 Environment Variables
+
+--- 
+
+## 🔑 Environment Variables
 
 Create a .env file:
 
@@ -139,13 +141,17 @@ PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 
-🚀 Deployment
+---
+
+## 🚀 Deployment
 
 The backend is deployed on Render.
 
 Ensure environment variables are configured in deployment settings.
 
-🧪 Future Improvements
+---
+
+## 🧪 Future Improvements
 
 Structured service layer
 
@@ -159,10 +165,14 @@ Unit testing (Jest)
 
 API documentation (Swagger)
 
-👨‍💻 Author
+---
+
+## 👨‍💻 Author
 
 Kaushik Kotha
 
-📜 License
+---
+
+## 📜 License
 
 MIT License
