@@ -1,135 +1,101 @@
-# 🚗 ParkEasy – Backend Service
+# 🟩 2️⃣ park-easy-server README.md
 
-Backend service for the ParkEasy parking management system.  
-This service handles user authentication, parking space management, and booking operations using RESTful APIs.
-
-Built with Node.js, Express.js, and MongoDB.
-
----
-
-## 📌 Overview
-
-ParkEasy backend is responsible for:
-
-- User registration and authentication (JWT-based)
-- Managing parking spaces
-- Handling booking operations
-- Secure API access with middleware protection
-- Database integration with MongoDB
-
-The system is designed with modular architecture and separation of concerns to ensure scalability and maintainability.
+```markdown
+<h1 align="center">🅿️ ParkEasy Server</h1>
+<p align="center">
+  Smart Parking Management System – Backend API
+</p>
 
 ---
 
-## 🏗 Architecture Overview
+## 🚀 Overview
 
-The application follows a layered architecture pattern:
+This repository contains the backend API for ParkEasy.
 
-- **Routes Layer** → Defines API endpoints
-- **Controller Layer** → Contains business logic
-- **Model Layer** → MongoDB schemas & data structure
-- **Middleware Layer** → Authentication & request validation
-- **Config Layer** → Database connection & environment setup
+The server handles:
 
-Each component is isolated to improve readability, maintainability, and scalability.
-
----
-
-## 📂 Folder Structure
-
-park-easy-server/
-│── config/
-│ └── db.js
-│
-│── controllers/
-│ └── (business logic files)
-│
-│── middleware/
-│ └── authMiddleware.js
-│
-│── models/
-│ └── (MongoDB schemas)
-│
-│── routes/
-│ └── (API route definitions)
-│
-│── server.js
-│── package.json
-
-
----
-
-## 🔐 Authentication
-
-- JWT-based authentication
-- Secure login & registration
-- Protected routes using middleware
-- Token validation on sensitive operations
-
----
-
-## 📡 API Endpoints
-
-### Authentication Routes
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-
-### Booking Routes
-- `GET /api/bookings`
-- `POST /api/bookings`
-- `PUT /api/bookings/:id`
-- `DELETE /api/bookings/:id`
-
-### Parking Routes
-- `GET /api/parking`
-- `POST /api/parking`
-- `PUT /api/parking/:id`
-- `DELETE /api/parking/:id`
-
----
-
-## ⚙️ Environment Variables
-
-Create a `.env` file in the root directory and add:
-
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-
----
-
-## 🚀 Installation & Running Locally
-
-1. Clone the repository
-
-git clone https://github.com/Kaushik515/park-easy-server.git
-
-2. Install dependencies
-
-npm install
-
-3. Add environment variables in `.env`
-
-4. Start the server
-
-npm start
+- 🔐 Authentication (JWT)
+- 🏢 Parking management
+- 📅 Space management
+- 📖 Booking system
+- 👤 Profile management
 
 ---
 
 ## 🛠 Tech Stack
 
-- Node.js
-- Express.js
-- MongoDB
-- JWT Authentication
-- REST API Architecture
+- 🟢 Node.js
+- 🚀 Express.js
+- 🍃 MongoDB
+- 🔐 JWT Authentication
+- 📦 Mongoose ODM
+- 🌍 Deployed on Render
 
 ---
 
-## 🎯 Key Engineering Practices
+## 🏗 Architecture
 
-- Modular folder structure
-- Separation of concerns
-- Environment-based configuration
-- Secure authentication middleware
-- RESTful API design principles
+Client (React)  
+⬇  
+REST API (Express)  
+⬇  
+MongoDB Database  
+
+---
+
+## 📡 API Endpoints
+
+### 🔐 Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /auth/register | Register user |
+| POST | /auth/login | Login user |
+
+---
+
+### 🏢 Parking
+| Method | Endpoint |
+|--------|----------|
+| GET | /parkings |
+| POST | /parkings |
+
+---
+
+### 📍 Spaces
+| Method | Endpoint |
+|--------|----------|
+| GET | /spaces |
+| POST | /spaces |
+
+---
+
+### 📖 Bookings
+| Method | Endpoint |
+|--------|----------|
+| GET | /bookings |
+| POST | /bookings |
+| DELETE | /bookings/:id |
+
+---
+
+## ⚙️ Setup Instructions
+
+```bash
+git clone https://github.com/Kaushik515/park-easy-server
+cd park-easy-server
+npm install
+npm run dev
+🔐 Environment Variables
+Create a .env file:
+
+PORT=5000
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_secret
+📂 Project Structure
+src/
+ ├── controllers/
+ ├── routes/
+ ├── models/
+ ├── middleware/
+ ├── config/
+ └── server.js
