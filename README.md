@@ -51,13 +51,44 @@ The backend follows a layered structure:
 
 src/
 │
-├── controllers/ # Business logic
-├── routes/ # API route definitions
-├── models/ # Mongoose schemas
-├── middleware/ # Authentication & validations
-├── config/ # DB configuration
-└── server.js # Entry point
----
+├── config/
+│   └── db.js
+│
+├── modules/
+│   ├── auth/
+│   │   ├── auth.controller.js
+│   │   ├── auth.service.js
+│   │   ├── auth.routes.js
+│   │   └── auth.model.js
+│   │
+│   ├── parking/
+│   │   ├── parking.controller.js
+│   │   ├── parking.service.js
+│   │   ├── parking.routes.js
+│   │   └── parking.model.js
+│   │
+│   ├── space/
+│   │   ├── space.controller.js
+│   │   ├── space.service.js
+│   │   ├── space.routes.js
+│   │   └── space.model.js
+│   │
+│   ├── booking/
+│   │   ├── booking.controller.js
+│   │   ├── booking.service.js
+│   │   ├── booking.routes.js
+│   │   └── booking.model.js
+│
+├── middleware/
+│   ├── auth.middleware.js
+│   └── error.middleware.js
+│
+├── utils/
+│   └── generateToken.js
+│
+├── app.js
+└── server.js
+
 
 ## 🔐 Authentication
 
