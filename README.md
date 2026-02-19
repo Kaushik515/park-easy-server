@@ -36,33 +36,35 @@ The backend follows a structured Controller–Model architecture.
 ---
 
 ## 📂 Project Structure
+
+```bash
+.
 ├── controllers/
-│ ├── address.js
-│ ├── booking.js
-│ ├── city.js
-│ ├── parking.js
-│ ├── paymentMethod.js
-│ ├── review.js
-│ ├── user.js
-│ └── spaceRouter.js
+│   ├── address.js
+│   ├── booking.js
+│   ├── city.js
+│   ├── parking.js
+│   ├── paymentMethod.js
+│   ├── review.js
+│   ├── user.js
+│   └── spaceRouter.js
 │
 ├── models/
-│ ├── bookingSchema.js
-│ ├── citySchema.js
-│ ├── parkingSchema.js
-│ ├── paymentMethodSchema.js
-│ ├── reviewSchema.js
-│ ├── spaceSchema.js
-│ └── userSchema.js
+│   ├── bookingSchema.js
+│   ├── citySchema.js
+│   ├── parkingSchema.js
+│   ├── paymentMethodSchema.js
+│   ├── reviewSchema.js
+│   ├── spaceSchema.js
+│   └── userSchema.js
 │
 ├── utils/
-│ └── errorHandler.js
+│   └── errorHandler.js
 │
 ├── app.js
 ├── package.json
 └── README.md
-
----
+```
 
 ## 🏗 Architecture Pattern
 
@@ -119,7 +121,6 @@ Route → Controller → Mongoose Model → MongoDB
 
 Clone the repository:
 
-```bash
 git clone https://github.com/Kaushik515/park-easy-server
 cd park-easy-server
 Install dependencies:
