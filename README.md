@@ -1,5 +1,4 @@
 
-```markdown
 <h1 align="center">🅿️ ParkEasy Backend API</h1>
 <p align="center">
   RESTful API for Smart Parking Management System
