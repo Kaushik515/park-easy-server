@@ -1,5 +1,3 @@
-# 🟩 2️⃣ park-easy-server README.md
-
 ```markdown
 <h1 align="center">🅿️ ParkEasy Server</h1>
 <p align="center">
