@@ -7,8 +7,7 @@ const { Types } = require("mongoose");
 
 const userRouter = Router();
 
-const { JWT_SECRET } = process.env;
-
+const { SECRET_JWT_CODE = "jafha71yeiqquy1#@!" } = process.env;
 // Register new user
 userRouter.post("/register", async (req, res) => {
     try {
@@ -18,7 +17,8 @@ userRouter.post("/register", async (req, res) => {
         const schema = Joi.object({
             name: Joi.string().required(),
             email: Joi.string()
-                .min(8)
+                .min(5)
+
                 .max(50)
                 .required()
                 .email(),
@@ -26,7 +26,8 @@ userRouter.post("/register", async (req, res) => {
                 .min(6)
                 .required()
                 .max(20)
-                .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,1024}$/)
+                // .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,1024}$/)
+
                 .messages({
                     "string.base": `"password" should be a type of 'text'`,
                     "string.pattern.base": `"password" should have one uppercase, lowercase, digit and special character`,
@@ -50,9 +51,7 @@ userRouter.post("/register", async (req, res) => {
                 // Password encryption
                 password = bcrypt.hashSync(password, 10);
                 const user = await User.create({ name, email, password, type });
-                const userResponse = user.toObject();
-                delete userResponse.password;
-                res.json(userResponse);
+                res.json(user);
             }
         }
     } catch (error) {
@@ -65,7 +64,7 @@ userRouter.post("/register", async (req, res) => {
 // Get user list
 userRouter.get("/", async (req, res) => {
     try {
-        const users = await User.find({}).select("-password");
+        const users = await User.find({});
 
         res.json(users);
     } catch (error) {
@@ -83,7 +82,8 @@ userRouter.post("/login", async (req, res) => {
         // Input validation
         const schema = Joi.object({
             email: Joi.string()
-                .min(8)
+                .min(5)
+
                 .max(50)
                 .required()
                 .email(),
@@ -92,6 +92,7 @@ userRouter.post("/login", async (req, res) => {
                 .required()
                 .max(20)
                 .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,1024}$/)
+
                 .messages({
                     "string.base": `"password" should be a type of 'text'`,
                     "string.pattern.base": `"password" should have one uppercase, lowercase, digit and special character`,
@@ -112,10 +113,8 @@ userRouter.post("/login", async (req, res) => {
                 const result = await bcrypt.compare(password, user.password);
                 if (result) {
                     // Generating and sending JWT token for authorization
-                    const token = await jwt.sign({ email: user.email }, JWT_SECRET);
-                    const userResponse = user.toObject();
-                    delete userResponse.password;
-                    res.json({ user: userResponse, token });
+                    const token = await jwt.sign({ email: user.email }, SECRET_JWT_CODE);
+                    res.json({ user, token });
                 } else {
                     res.status(400).json({ error: "password doesn't match" });
                 }

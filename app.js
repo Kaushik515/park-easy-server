@@ -42,11 +42,11 @@ mongoose.connection.on("error", (err) => {
 //connectDB();
 
 
-app.get('/', isLoggedIn, async (req, res) => {
+app.get('/', async (req, res) => {
     res.json({ message: 'Hello world!' })
 })
 
-app.use("/user", isLoggedIn, userRouter)
+app.use("/user", userRouter)
 app.use("/parking", parkingRouter)
 app.use("/paymentMethod", paymentMethodRouter)
 app.use("/booking", isLoggedIn, bookingRouter)

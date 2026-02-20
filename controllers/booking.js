@@ -51,12 +51,16 @@ bookingRouter.get("/", async (req, res) => {
         }
         let booking = await Booking.find({}).populate({ path: 'space_id', populate: { path: 'parking_id' } });
         if (owner_id) {
-            booking = booking.filter((item) => item?.space_id?.parking_id?.user_id.equals(owner_id))
+            booking = booking.filter((item) => {
+                const userId = item?.space_id?.parking_id?.user_id;
+                return userId && userId.equals(owner_id);
+            });
         }
 
         res.json(booking);
     } catch (error) {
-        res.status(400).json({ error });
+        console.error("fetchBookings server error:", error);
+        res.status(400).json({ error: error.message || error });
     }
 });
 
@@ -90,7 +94,7 @@ bookingRouter.put("/:id", async (req, res) => {
                 }
                 else {
                     console.log('updatedBookingObj ', updatedBookingObj);
-                    if(updatedBookingObj?.confirm_booking === 'approved'){
+                    if (updatedBookingObj?.confirm_booking === 'approved') {
                         await Booking.updateMany({ space_id }, { $set: { confirm_booking: 'rejected' } });
                     }
                     const updatedBooking = await booking.updateOne(updatedBookingObj)

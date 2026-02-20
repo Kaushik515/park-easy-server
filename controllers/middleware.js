@@ -9,7 +9,7 @@ const isLoggedIn = async (req, res, next) => {
             if (token) {
                 // Verify JWT token
                 // If passed, proceed to api call
-                const payload = await jwt.verify(token, process.env.JWT_SECRET);
+                const payload = await jwt.verify(token, process.env.SECRET_JWT_CODE || "jafha71yeiqquy1#@!");
                 if (payload) {
                     req.user = payload;
                     next();

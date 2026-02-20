@@ -117,9 +117,9 @@ ParkEasy utilizes standard **JWT-based authentication**:
 
 The API is built with a "Security-First" approach to protect both infrastructure and user data:
 
-- **🔐 Consolidated Secret Management**: Uses a unified `JWT_SECRET` environment variable for both token issuance and verification, eliminating inconsistent fallback logic.
+- **🔐 JWT Secret Management**: Uses `SECRET_JWT_CODE` for token issuance and verification.
 - **🛡️ Administrative Route Protection**: Sensitive management endpoints (like `GET /user` and `GET /booking`) are protected by the `isLoggedIn` middleware.
-- **✨ Automatic Data Sanitization**: Sensitive fields such as `password` hashes are explicitly stripped from JSON responses before reaching the network.
+- **✨ Data Availability**: User data is returned according to legacy requirements for broader compatibility with client-side consumers.
 - **🔑 Secure Password Hashing**: Utilizes `bcryptjs` with a cost factor of 10 for industry-standard credential storage.
 
 ---
@@ -144,7 +144,7 @@ The API is built with a "Security-First" approach to protect both infrastructure
    Create a `.env` file in the root with the following keys:
    ```text
    url=YOUR_MONGODB_CONNECTION_STRING
-   JWT_SECRET=YOUR_SECURE_JWT_SECRET
+   SECRET_JWT_CODE=YOUR_SECURE_JWT_SECRET
    PORT=5000
    ```
 4. Start the Application:
