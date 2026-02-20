@@ -7,7 +7,7 @@ const { Types } = require("mongoose");
 
 const userRouter = Router();
 
-const { SECRET_JWT_CODE = "jafha71yeiqquy1#@!" } = process.env;
+const { JWT_SECRET } = process.env;
 
 // Register new user
 userRouter.post("/register", async (req, res) => {
@@ -50,7 +50,9 @@ userRouter.post("/register", async (req, res) => {
                 // Password encryption
                 password = bcrypt.hashSync(password, 10);
                 const user = await User.create({ name, email, password, type });
-                res.json(user);
+                const userResponse = user.toObject();
+                delete userResponse.password;
+                res.json(userResponse);
             }
         }
     } catch (error) {
@@ -63,7 +65,7 @@ userRouter.post("/register", async (req, res) => {
 // Get user list
 userRouter.get("/", async (req, res) => {
     try {
-        const users = await User.find({});
+        const users = await User.find({}).select("-password");
 
         res.json(users);
     } catch (error) {
@@ -110,8 +112,10 @@ userRouter.post("/login", async (req, res) => {
                 const result = await bcrypt.compare(password, user.password);
                 if (result) {
                     // Generating and sending JWT token for authorization
-                    const token = await jwt.sign({ email: user.email }, SECRET_JWT_CODE);
-                    res.json({ user, token });
+                    const token = await jwt.sign({ email: user.email }, JWT_SECRET);
+                    const userResponse = user.toObject();
+                    delete userResponse.password;
+                    res.json({ user: userResponse, token });
                 } else {
                     res.status(400).json({ error: "password doesn't match" });
                 }

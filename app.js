@@ -11,8 +11,8 @@ const bookingRouter = require("./controllers/booking");
 const spaceRouter = require("./controllers/spaceRouter");
 const cors = require('cors');
 const reviewRouter = require("./controllers/review");
-const cityRouter =require("./controllers/city")
-const addressRouter =require("./controllers/address")
+const cityRouter = require("./controllers/city")
+const addressRouter = require("./controllers/address")
 
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -28,15 +28,12 @@ app.use(cors())
 
 
 
-mongoose.connect(process.env.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(process.env.url)
 
 mongoose.connection.once("open", async () => {
     console.log("Connected to database");
 });
-      
+
 mongoose.connection.on("error", (err) => {
     console.log("Error connecting to database  ", err);
 });
@@ -46,13 +43,13 @@ mongoose.connection.on("error", (err) => {
 
 
 app.get('/', isLoggedIn, async (req, res) => {
-    res.json({ message: 'Hello world!'})
+    res.json({ message: 'Hello world!' })
 })
 
-app.use("/user", userRouter)
+app.use("/user", isLoggedIn, userRouter)
 app.use("/parking", parkingRouter)
 app.use("/paymentMethod", paymentMethodRouter)
-app.use("/booking", bookingRouter)
+app.use("/booking", isLoggedIn, bookingRouter)
 app.use("/space", spaceRouter)
 app.use("/review", reviewRouter)
 app.use("/city", cityRouter)

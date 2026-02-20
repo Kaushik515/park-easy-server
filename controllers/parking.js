@@ -29,7 +29,7 @@ parkingRouter.post("/", async (req, res) => {
             res.status(400).json({ error: error.details[0].message });
         }
         else {
-            const parking = await Parking.create({ name, address, city, country, lat, long, user_id , user_name});
+            const parking = await Parking.create({ name, address, city, country, lat, long, user_id, user_name });
             res.json({ message: "Parking created", parking });
         }
     } catch (error) {
@@ -41,10 +41,10 @@ parkingRouter.post("/", async (req, res) => {
 // Get existing parking list
 parkingRouter.get("/", async (req, res) => {
     try {
-        const { user_id, country, city, address} = req.query;
+        const { user_id, country, city, address } = req.query;
         let parking;
         let query = {};
-        if(user_id) {
+        if (user_id) {
             query.user_id = user_id;
         }
         if (country) {
@@ -70,9 +70,9 @@ parkingRouter.get("/", async (req, res) => {
             let rating = 0;
             let count = 0;
             const userReviews = reviews.filter((review) => {
-             console.log('review ', review);
-             console.log('item?.user_id ', item?.user_id);
-             return   review.owner_id.equals(item?.user_id?._id)
+                console.log('review ', review);
+                console.log('item?.user_id ', item?.user_id);
+                return review.owner_id.equals(item?.user_id)
             })
             console.log('userReviews ', userReviews);
             userReviews.forEach((review) => {
@@ -83,7 +83,7 @@ parkingRouter.get("/", async (req, res) => {
 
             return { ...item.toObject(), owner_rating };
         })
-       
+
         res.json(parkingWithOwnerRatings);
     } catch (error) {
         console.error('error ', error);
