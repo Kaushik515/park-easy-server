@@ -103,6 +103,8 @@ ParkEasy utilizes standard **JWT-based authentication**:
 
 ## 📡 API Modules
 
+```bash
+
 | Module | Responsibility |
 | :--- | :--- | :--- |
 | **👤 Users** | Sign-up, login, and profile updates. |
@@ -111,6 +113,7 @@ ParkEasy utilizes standard **JWT-based authentication**:
 | **📅 Bookings** | The core workflow: Search → Request → Approve. |
 | **⭐ Reviews** | Community-driven ratings for owners and spots. |
 
+```
 ---
 
 ## 🔐 Security & Privacy Hardening
