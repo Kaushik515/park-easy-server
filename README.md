@@ -17,8 +17,8 @@ It powers the ParkEasy platform by handling:
 - 📍 Space management
 - 📅 Booking system
 - ⭐ Reviews & Ratings
-- 💳 Payment methods
-- 🏙 City & Address management
+- 💳 Payment methods (In Progress)
+- 🏙 City & Address managemen (In Progress)
 
 The backend follows a structured Controller–Model architecture.
 
